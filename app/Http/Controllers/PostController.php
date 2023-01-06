@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostFormRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,7 +43,7 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store(PostFormRequest $request)
     {
         //
         // $post = new Post();
@@ -51,14 +52,23 @@ class PostController extends Controller
 
         // $post->save();
 
-        $this->validate(
-            $request,
-            [
-                'title' => 'required|max:255|unique:posts',
-                'body' => 'required',
-                'image' => ['required', 'mimes:png,jpg,jepg', 'max:5048']
-            ]
-        );
+        // $this->validate(
+        //     $request,
+        //     [
+        //         'title' => 'required|max:255|unique:posts',
+        //         'body' => 'required',
+        //         'image' => ['required', 'mimes:png,jpg,jepg', 'max:5048']
+        //     ]
+        // );
+
+        // $request->validate([
+        //         'title' => 'required|max:255|unique:posts',
+        //         'body' => 'required',
+        //         'image' => ['required', 'mimes:png,jpg,jepg', 'max:5048']
+        //     ]
+        // );
+
+        $request->validated();
 
         Post::create([
             'title' => $request->title,
