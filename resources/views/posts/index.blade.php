@@ -39,12 +39,13 @@
 
                     </div>
 
-
-
-
                 </div>
             @endforeach
 
+        </div>
+
+        <div class="mx-auto w-full ">
+            {{ $posts->links() }}
         </div>
 
     </div>

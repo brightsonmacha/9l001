@@ -29,7 +29,7 @@ class PostController extends Controller
         // });
 
         // $posts =  Post::sum('id');
-        $posts =  Post::orderBy('updated_at', 'desc')->get();
+        $posts =  Post::orderBy('updated_at', 'desc')->paginate(4);
 
 
         //return view('posts.index')->with(['posts' => $posts]);
