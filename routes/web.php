@@ -1,14 +1,22 @@
 <?php
 
-use App\Http\Controllers\FallbackController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UsersController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FallbackController;
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
 
 
 Route::get('/', function () {
-    return view('index');
-});
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
