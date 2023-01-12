@@ -4,10 +4,12 @@
         <div class="mb-4">
             <h1 class="block text-xl font-bold">Posts</h1>
 
-            <a href="{{ route('posts.create') }}"
-                class="mx-auto mr-0 block mt-2 w-fit text-center text-white py-2 px-4 bg-green-500 rounded-full transition-all hover:bg-green-400">
-                Add Post
-            </a>
+            @auth
+                <a href="{{ route('posts.create') }}"
+                    class="mx-auto mr-0 block mt-2 w-fit text-center text-white py-2 px-4 bg-green-500 rounded-full transition-all hover:bg-green-400">
+                    Add Post
+                </a>
+            @endauth
 
         </div>
 
@@ -28,16 +30,21 @@
                     </a>
                     <p>{{ $post->body }}</p>
 
-                    <div class=" w-fit mt-4 block">
-                        <a href="{{ route('posts.edit', $post->id) }}" class=" bg-blue-500 px-2 py-1 rounded-lg">Edit</a>
+                    @auth
+                        <div class=" w-fit mt-4 block">
+                            <a href="{{ route('posts.edit', $post->id) }}" class=" bg-blue-500 px-2 py-1 rounded-lg">Edit</a>
 
-                        <form class="inline" method="POST" action="{{ route('posts.delete', $post->id) }}">
-                            @csrf
-                            <button type="submit" class="mt-2 bg-red-500 ml-2 px-2 py-1 rounded-lg">Delete</button>
+                            <form class="inline" method="POST" action="{{ route('posts.delete', $post->id) }}">
+                                @csrf
+                                <button type="submit" class="mt-2 bg-red-500 ml-2 px-2 py-1 rounded-lg">Delete</button>
 
-                        </form>
+                            </form>
 
-                    </div>
+                        </div>
+
+                    @endauth
+
+
 
                 </div>
             @endforeach
