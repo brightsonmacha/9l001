@@ -37,7 +37,6 @@
                             <form class="inline" method="POST" action="{{ route('posts.delete', $post->id) }}">
                                 @csrf
                                 <button type="submit" class="mt-2 bg-red-500 ml-2 px-2 py-1 rounded-lg">Delete</button>
-
                             </form>
 
                         </div>
