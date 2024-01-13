@@ -5,18 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostFormRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware(
-            ['auth']
-        )->except([
-            'index', 'show'
-        ]);
+        $this->middleware(['auth'])
+            ->except([]);
     }
 
     public function index()
@@ -25,7 +21,6 @@ class PostController extends Controller
         //$posts  = DB::select('SELECT * FROM posts WHERE id = :id', [ 'id' => 2]); //parameterBinding
         // $posts  = DB::table('posts')
         //     ->get();
-
 
         // $posts =  Post::orderBy('id', 'desc')->take(3)->get();
         // $posts =  Post::orderBy('id', 'desc')->get();
@@ -37,13 +32,11 @@ class PostController extends Controller
         // });
 
         // $posts =  Post::sum('id');
-        $posts =  Post::orderBy('updated_at', 'desc')->paginate(4);
-
+        $posts = Post::orderBy('updated_at', 'desc')->paginate(4);
 
         //return view('posts.index')->with(['posts' => $posts]);
         return view('posts.index', ['posts' => $posts]);
     }
-
 
     public function create()
     {
@@ -81,12 +74,11 @@ class PostController extends Controller
         Post::create([
             'title' => $request->title,
             'body' => $request->body,
-            'image_path' => $this->storeImage($request)
+            'image_path' => $this->storeImage($request),
         ]);
 
         return redirect(route('posts.index'))->with('message', 'Post created successfully');
     }
-
 
     public function show($id)
     {
@@ -106,7 +98,6 @@ class PostController extends Controller
         return view('posts.edit')->with(['post' => $post]);
     }
 
-
     public function update(Request $request, $id)
     {
         //
@@ -115,7 +106,7 @@ class PostController extends Controller
             [
                 'title' => 'required|max:255|unique:posts,title,' . $id,
                 'body' => 'required',
-                'image' => ['mimes:png,jpg,jepg', 'max:5048']
+                'image' => ['mimes:png,jpg,jepg', 'max:5048'],
             ]
         );
 
@@ -126,18 +117,17 @@ class PostController extends Controller
             Post::where('id', $id)->update([
                 'title' => $request->title,
                 'body' => $request->body,
-                'image_path' =>  $this->storeImage($request)
+                'image_path' => $this->storeImage($request),
             ]);
         } else {
             Post::where('id', $id)->update([
                 'title' => $request->title,
-                'body' => $request->body
+                'body' => $request->body,
             ]);
         }
 
         return redirect(route('posts.index'))->with('message', 'Post edited successfuly');
     }
-
 
     public function destroy($id)
     {

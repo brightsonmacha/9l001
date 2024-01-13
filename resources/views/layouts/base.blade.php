@@ -4,25 +4,36 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+    <!-- Scripts -->
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        body {
-            font-family: 'Poppins';
-        }
-    </style>
+    <script src="{{ asset('js/app.js') }}"></script>
+
 </head>
 
-<body class="bg-gray-100">
-    @include('layouts.nav')
+<body class="">
+    <div class="min-h-screen bg-gray-100">
+        @include('layouts.navigation')
 
-    <div class="w-full h-full py-2 px-4 mt-3 flex justify-center ">
-        @yield('contents')
-    </div>
+
+
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6  border-b border-gray-200">
+                        @yield('contents')
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 

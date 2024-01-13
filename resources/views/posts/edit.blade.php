@@ -48,11 +48,11 @@
 
                     <div class="mb-3">
                         <label>Post Image</label>
-                        <input name="image" class="w-full border-2 p-4 rounded-lg mt-2" type="file" placeholder="Post Image">
+                        <input name="image" class="w-full border-2 p-4 rounded-lg mt-2" type="file"
+                            placeholder="Post Image">
                     </div>
 
-                    <button type="submit"
-                        class="mt-3 py-2 px-4 rounded-lg text-white w-fit bg-green-500">Update</button>
+                    <button type="submit" class="mt-3 py-2 px-4 rounded-lg text-white w-fit bg-green-500">Update</button>
 
                 </form>
             </div>

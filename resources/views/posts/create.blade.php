@@ -1,7 +1,6 @@
 @extends('layouts.base')
 
 @section('contents')
-    <div class="w-9/12  ">
 
 
         <h1 class="text-xl font-bold mb-5">Add Post</h1>
@@ -29,8 +28,8 @@
 
                 <div class="mb-3">
                     <label>Post Title</label>
-                    <input name="title" class="w-full border-2 p-4 rounded-lg mt-2" type="text" value="{{ old('title') }}"
-                        placeholder="Post Title">
+                    <input name="title" class="w-full border-2 p-4 rounded-lg mt-2" type="text"
+                        value="{{ old('title') }}" placeholder="Post Title">
                 </div>
 
                 <div class="mb-3">
@@ -40,7 +39,8 @@
 
                 <div class="mb-3">
                     <label>Post Image</label>
-                    <input name="image" class="w-full border-2 p-4 rounded-lg mt-2" type="file" placeholder="Post Image">
+                    <input name="image" class="w-full border-2 p-4 rounded-lg mt-2" type="file"
+                        placeholder="Post Image">
                 </div>
 
                 <button type="submit" class="mt-3 py-2 px-4 rounded-lg text-white w-fit bg-green-500">Create</button>
@@ -48,5 +48,5 @@
             </form>
         </div>
 
-    </div>
+   
 @endsection
